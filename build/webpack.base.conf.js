@@ -32,10 +32,16 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '/components': resolve('src/components'),
+      '/page': resolve('src/page'),
+      '/common': resolve('src/common'),
+      '/assets': resolve('src/assets'),
+      '/api': resolve('src/api'),
+      '/utils': resolve('src/utils')
     }
   },
   module: {
@@ -45,6 +51,10 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass']
       },
       {
         test: /\.js$/,
