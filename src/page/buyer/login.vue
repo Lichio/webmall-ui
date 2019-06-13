@@ -121,7 +121,7 @@ export default {
     },
     toHome () {
       this.$router.push({
-        path: '/buyer/home'
+        path: '/'
       })
     },
     toRegister () {
