@@ -48,3 +48,28 @@ export const homeList = (params) => {
 export const commodityDetails = (params) => {
   return http.fetchGet('/v1.0/buyer/commodity', params)
 }
+
+// 提交订单
+export const submitOrder = (params) => {
+  return http.fetchPost('/v1.0/buyer/order', params)
+}
+
+// 订单列表
+export const orderList = (params) => {
+  return http.fetchGet('/v1.0/buyer/orders', params)
+}
+
+// 删除订单
+export const deleteOrder = (params) => {
+  return http.fetchDelete('/v1.0/buyer/order', params)
+}
+
+// 订单详情
+export const orderDetails = (params) => {
+  return http.fetchGet('/v1.0/buyer/orderDetails', params)
+}
+
+// 获取物流状态
+export const logisticsInfo = (params) => {
+  return http.fetchGet('/v1.0/buyer/logistics', params)
+}

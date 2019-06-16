@@ -11,9 +11,12 @@
           <div class="right-box">
             <div class="nav-list">
               <el-autocomplete
+                disabled="true"
                 placeholder="请输入商品信息"
-                icon="search"
+                suffix-icon="el-icon-search"
                 v-model="input"
+                minlength=1
+                maxlength=100
                 @select="handleSelect"
                 :on-icon-click="handleIconClick"
                 @keydown.enter.native="handleIconClick">
@@ -28,7 +31,7 @@
             </div>
             <div class="nav-aside" ref="aside" :class="{fixed:st}">
               <div class="user pr">
-                <router-link to="/buyer/order">个人中心</router-link>
+                <router-link to="/buyer">个人中心</router-link>
                 <!--用户信息显示-->
                 <div class="nav-user-wrapper pa" v-if="loginStatus">
                   <div class="nav-user-list">
@@ -36,20 +39,20 @@
                       <!--头像-->
                       <li class="nav-user-avatar">
                         <div>
-                          <span class="avatar" :style="{backgroundImage:''}">
+                          <span class="avatar" :style="{backgroundImage:'https://gw.alicdn.com/tps/i3/TB1yeWeIFXXXXX5XFXXuAZJYXXX-210-210.png_80x80.jpg'}">
                           </span>
                         </div>
                         <p class="name">{{username}}</p>
                       </li>
                       <li>
-                        <router-link to="/buyer/order">我的订单</router-link>
+                        <router-link to="/buyer">我的订单</router-link>
                       </li>
                       <!-- <li>
                         <router-link to="/user/information">账号资料</router-link>
                       </li> -->
-                      <li>
+                      <!-- <li>
                         <a href="javascript:;" @click="open('待开发','此功能开发中...')">收货地址</a>
-                      </li>
+                      </li> -->
                       <!-- <li>
                         <router-link to="/user/support">售后服务</router-link>
                       </li> -->
