@@ -10,6 +10,8 @@ import checkout from '@/page/buyer/checkout'
 import order from '@/page/buyer/order'
 import buyer from '@/page/buyer/buyer'
 import orderDetails from '@/page/buyer/orderDetails'
+import slogin from '@/page/seller/login'
+import shome from '@/page/seller/home'
 
 Vue.use(Router)
 
@@ -39,6 +41,8 @@ export default new Router({
         {path: '/buyer/orderDetails', name: 'orderDetails', component: orderDetails}
       ]
     },
+    {path: '/seller/login', name: 'slogin', component: slogin},
+    {path: '/seller/home', name: 'shome', component: shome},
     {path: '/*', redirect: '/buyer/home'}
   ]
 })

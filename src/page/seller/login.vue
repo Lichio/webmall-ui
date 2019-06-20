@@ -3,7 +3,7 @@
     <div class="wrapper">
       <div class="dialog dialog-shadow" style="display: block; margin-top: -362px;">
         <div class="title">
-          <h4>WebMall官网 买家登陆</h4>
+          <h4>WebMall官网 卖家登陆</h4>
         </div>
         <div v-if="loginPage" class="content">
           <ul class="common-form">
@@ -25,9 +25,9 @@
             <li style="text-align: right" class="pr">
               <el-checkbox class="auto-login" v-model="autoLogin">记住密码</el-checkbox>
               <!-- <span class="pa" style="top: 0;left: 0;color: #d44d44">{{ruleForm.errMsg}}</span> -->
-              <a href="javascript:;" class="register" @click="toRegister">注册 </a>
+              <a style="padding: 1px 0 0 10px" @click="open('待开发','此功能开发中...')">注册 </a>
               <a style="padding: 1px 0 0 10px" @click="open('待开发','此功能开发中...')">验证码登陆</a>
-              <a href="javascript:;" class="register" @click="toSLogin">卖家登陆 </a>
+              <a href="javascript:;" class="register" @click="toBLogin">买家登陆 </a>
             </li>
           </ul>
           <!--登陆-->
@@ -55,7 +55,7 @@
 </template>
 <script>
 import YButton from '/components/YButton'
-import { blogin1 } from '/api/index.js'
+import { slogin1 } from '/api/index.js'
 import { setStore, getStore, removeStore } from '/utils/storage.js'
 export default {
   data () {
@@ -122,7 +122,7 @@ export default {
     },
     toHome () {
       this.$router.push({
-        path: '/'
+        path: '/seller/home'
       })
     },
     toRegister () {
@@ -130,9 +130,9 @@ export default {
         path: '/buyer/register'
       })
     },
-    toSLogin () {
+    toBLogin () {
       this.$router.push({
-        path: '/seller/login'
+        path: '/buyer/login'
       })
     },
     toLogin2 () {
@@ -167,7 +167,7 @@ export default {
         this.message('账号或者密码不能为空!')
         return false
       }
-      blogin1(
+      slogin1(
         {
           username: this.ruleForm.userName,
           password: this.ruleForm.userPwd
@@ -175,9 +175,10 @@ export default {
       ).then(res => {
         console.log(res)
         if (res.code === 200) {
-          setStore('username', res.data.username)
-          setStore('id', res.data.buyerId)
-          setStore('role', 'buyer')
+          // setStore('username', res.data.username)
+          // setStore('id', res.data.buyerId)
+          // setStore('role', 'buyer')
+          setStore('sellerId', res.data.sellerId)
           this.toHome()
           // 登录后添加当前缓存中的购物车
           // if (this.cart.length) {

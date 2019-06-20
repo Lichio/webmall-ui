@@ -39,6 +39,7 @@ Vue.config.productionTip = false
 const whiteList = ['/buyer/register', '/buyer/login', '/seller/login', '/seller/register']
 router.beforeEach(function (to, from, next) {
   let role = getStore('role')
+  let sellerId = getStore('sellerId')
   role = role === null ? 1 : role
   let id = getStore('id')
   id = id === null ? 0 : id
@@ -46,24 +47,34 @@ router.beforeEach(function (to, from, next) {
     role,
     id
   }
-  checkLogin(params).then(res => {
-    console.log(res)
-    if (res.code !== 200) { // 未登陆
-      if (whiteList.indexOf(to.path) !== -1) { // 在白名单中
-        next()
-      } else {
-        next('/buyer/login')
-      }
+  if (to.path === '/seller/login') {
+    next()
+  } else if (to.path === '/seller/home') {
+    if (sellerId === null) {
+      next('/seller/login')
     } else {
-      if (to.path === '/buyer/login') {
-        next('/buyer/home')
-      }
-      if (to.path === '/seller/login') {
-        next('/selle/home')
-      }
       next()
     }
-  })
+  } else {
+    checkLogin(params).then(res => {
+      console.log(res)
+      if (res.code !== 200) { // 未登陆
+        if (whiteList.indexOf(to.path) !== -1) { // 在白名单中
+          next()
+        } else {
+          next('/buyer/login')
+        }
+      } else {
+        if (to.path === '/buyer/login') {
+          next('/buyer/home')
+        }
+        // if (to.path === '/seller/login' && sellerId !== null) {
+        //   next('/seller/home')
+        // }
+        next()
+      }
+    })
+  }
 })
 /* eslint-disable no-new */
 new Vue({

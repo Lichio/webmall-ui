@@ -73,3 +73,13 @@ export const orderDetails = (params) => {
 export const logisticsInfo = (params) => {
   return http.fetchGet('/v1.0/buyer/logistics', params)
 }
+
+// seller使用密码登陆
+export const slogin1 = (params) => {
+  return http.fetchPost('/v1.0/seller/passwordLogin', params)
+}
+
+// 卖家新建商品
+export const newCommodity = (params) => {
+  return http.fetchPost('/v1.0/seller/commodity', params)
+}
